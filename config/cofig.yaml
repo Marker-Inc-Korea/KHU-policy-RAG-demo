@@ -42,12 +42,12 @@ node_lines:
             - "passage에는 question에 대한 답이 있습니다. 다음 question에 대답하시오. \n\n Passage: {retrieved_contents} \n\n Question: {query} \n\n 질문에 답하시오. 단계별로 생각하시오." # Zero-shot CoT prompt
     - node_type: generator
       strategy:
-        - metric_name: bleu
-        - metric_name: meteor
-        - metric_name: sem_score
-          embedding_model: openai
+        metrics:
+          - metric_name: bleu
+          - metric_name: meteor
+          - metric_name: sem_score
+            embedding_model: openai
       modules:
         - module_type: llama_index_llm
           llm: openai
-          temperature: [0.1, 0.5, 1.1]
           batch: 2
